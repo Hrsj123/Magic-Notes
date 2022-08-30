@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+}
+.newElement {
+    box-sizing: border-box;
+    margin: 10px 0px;
+    padding: 5px 18px; 
+    border: solid;
+    border-color: lightgray;
+    border-radius: 10px;
+}
+#head {                         /* For Title*/
+    font-size: 27px;
+    text-align: center;
+}
+
+.remove-item {                      /* For removeItem Icon:      */
+    padding: 5px 5px;
+    width: 35px;
+    height: 35px;
+}
+
+#add-area {                     /* add-area: place where List item is added: To give space! */
+    margin: 10px 10px;
+}
+
+.footer {
+    height: 30px;
+}
+
+.note-head {                          /* Add a note heading */
+    font-size: 30px;   
+}
