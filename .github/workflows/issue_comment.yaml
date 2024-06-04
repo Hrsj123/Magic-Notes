@@ -3,6 +3,8 @@ name: Create a comment on new issues
 on:
     issues:
         types: [opened]
+    
+    workflow_dispatch:
 
 jobs:
     comment-with-action:
