@@ -1,7 +1,6 @@
 name: Create a comment on new issues workflow
 
 on:
-    pull_request:
     issues:
         types: [opened]
     workflow_dispatch:
