@@ -1,9 +1,10 @@
-name: Create a comment on new issues
+name: Create a comment on new issues workflow
 
 on:
     issues:
         types: 
             - opened
+            - closed
     
     workflow_dispatch:
 
@@ -11,6 +12,6 @@ jobs:
     comment-with-action:
         runs-on: ubuntu-latest
         steps:
-            - name: "dump github context"
+            - name: dump github context
               run: echo '${{ toJson(github.event) }}' | jq
               shell: bash
