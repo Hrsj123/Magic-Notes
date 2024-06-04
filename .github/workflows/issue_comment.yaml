@@ -2,7 +2,8 @@ name: Create a comment on new issues
 
 on:
     issues:
-        types: [opened]
+        types: 
+            - opened
     
     workflow_dispatch:
 
