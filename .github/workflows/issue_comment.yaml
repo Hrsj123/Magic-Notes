@@ -1,0 +1,43 @@
+name: Create a comment on new issues workflow
+
+on:
+    issues:
+        types: 
+            - opened
+    
+    workflow_dispatch:
+
+jobs:
+    comment-with-action:
+        runs-on: ubuntu-latest
+        steps:
+            - name: "dump github context"
+              run: echo '${{ toJson(github.event) }}' | jq
+              shell: bash
+            - name: Create comment
+              uses: peter-evans/create-or-update-comment@v1
+              with:
+                issue-number: ${{ github.event.issue.number }}
+                body: |
+                  This is a multiline test commit
+                  - With GitHub **Markdown** :sparkles:
+                  - Created by [create-or-update-comment] [1]
+
+                  [1]: https://github.com/peter-evans/create-or-update-comment
+                reactions: '+1'
+    
+    comment-with-api:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Create comment with API
+              run: |
+                gh api -X POST \
+                  http://api.github.com/repo/${ORGANIZATION}/${REPOSITORY}/issue/${ISSUE_NUMBER}/comments \
+                  -f body='
+                  Comment from the api call and not action
+                  '
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                ORGANIZATION: ${{ github.event.organization.login }}
+                REPOSITORY: ${{ github.event.repository.name }}
+                ISSUE_NUMBER: ${{ github.event.issue.number }}
