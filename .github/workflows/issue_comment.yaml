@@ -31,11 +31,14 @@ jobs:
         steps:
             - name: Create comment with API
               run: |
-                gh api -X POST \
-                  http://api.github.com/repos/${ORGANIZATION}/${REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
-                  -f body='
+                gh api \
+                  --method POST \
+                  -H "Accept: application/vnd.github+json" \
+                  -H "X-GitHub-Api-Version: 2022-11-28" \
+                  /repos/${ORGANIZATION}/${REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
+                  -f "body=
                   Comment from the api call and not action
-                  '
+                  "
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                 ORGANIZATION: ${{ github.event.organization.login }}
