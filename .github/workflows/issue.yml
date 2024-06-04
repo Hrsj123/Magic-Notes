@@ -11,7 +11,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             # - name: "dump github context"
-            #   if: ${{ github.event_name != 'pull_request'}}
+            #   if: ${{ github.event.action == 'opened'}}
             #   run: echo '${{ toJson(github.event) }}' | jq
             #   shell: bash
             - name: Create comment
